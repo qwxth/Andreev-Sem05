@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>WaterMeter — счётчик воды</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="brand"><span class="drop" aria-hidden="true">◒</span><span>WaterMeter</span></div>
+      <span class="network">Локальная сеть · без интернета</span>
+    </header>
+    <section class="intro">
+      <p class="eyebrow">УЧЁТ ПОТРЕБЛЕНИЯ ВОДЫ</p>
+      <h1>Всё под контролем.</h1>
+      <p>Показания счётчика и история измерений в одном месте.</p>
+    </section>
+    <section class="meter-card" aria-labelledby="reading-heading">
+      <div class="card-top"><h2 id="reading-heading">Последнее показание</h2><span id="connection" class="badge pending" role="status">Проверяем связь…</span></div>
+      <div class="reading"><span id="liters">—</span><span class="unit">л</span></div>
+      <p id="reading-note">Загружаем сохранённое показание.</p>
+      <div class="details">
+        <div><span>Последнее чтение ESP32</span><strong id="last-success">—</strong></div>
+        <div><span>Состояние геркона</span><strong id="contact">—</strong></div>
+        <div><span>Один импульс</span><strong>10 литров</strong></div>
+      </div>
+    </section>
+    <div class="section-title"><div><h2>История показаний</h2><p>Время получения данных на этом компьютере.</p></div><button id="refresh" type="button">Обновить</button></div>
+    <section class="history" aria-label="Последние сохранённые показания">
+      <table><thead><tr><th scope="col">Время получения</th><th scope="col">Показание, л</th></tr></thead><tbody id="records"><tr><td colspan="2">Загружаем историю…</td></tr></tbody></table>
+    </section>
+    <p id="notice" class="notice" aria-live="polite">Подключите ноутбук к Wi-Fi <strong>WaterMeter</strong>. Приложение проверяет показания каждые 5 секунд.</p>
+    <footer><span>Геркон → ESP32 → PostgreSQL</span><span>Сохранённые показания остаются в базе после остановки приложения.</span></footer>
+  </main>
+</body>
+</html>

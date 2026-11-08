@@ -1,0 +1,5 @@
+BEGIN;
+
+ALTER TABLE water_log DROP COLUMN IF EXISTS pulses;
+
+COMMIT;
